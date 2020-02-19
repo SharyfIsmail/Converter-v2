@@ -316,7 +316,7 @@ public class FileBuilder extends Task<Void>
 	}
 
 	@Override
-	protected Void call() throws Exception 
+	protected Void call() throws IOException 
 	{
 		byte[] bytes;
 		byte[] sys1;  
@@ -330,7 +330,6 @@ public class FileBuilder extends Task<Void>
 		bytes = Reader.getBytesFromFile(file);
 		
 		String vibr1 = bytesToString(bytes).intern();
-	   // System.out.println(vibr.equals(vibr1));
 	    if(vibr.equals(vibr1))
 	    {
 	    	Platform.runLater(() -> fileBuilder.setTextProperty("Processing..."));
@@ -366,9 +365,10 @@ public class FileBuilder extends Task<Void>
 	     }
 		 else
 		 {
-			 Platform.runLater(() -> fileBuilder.setTextProperty("Error..."));
-			 throw new IOException();
-
+			 //Platform.runLater(() -> fileBuilder.setTextProperty("Error..."));
+			 //fileBuilder.setTextProperty("Error...");
+			 throw new IOException("Inncorrect file format....");
+			
 		 }
 		return null;
 	}
