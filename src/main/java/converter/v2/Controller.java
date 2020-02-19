@@ -33,13 +33,11 @@ public class Controller implements Initializable
 	Label labelText;
 	File file = null;
 	Serv service = new Serv();
-	Alert alert = new Alert(AlertType.ERROR);
-	
+	Alert alertError = new Alert(AlertType.ERROR);
+	Alert alertDone = new Alert(AlertType.CONFIRMATION);
 	public void convertButtonHandler()
 	{
 		FileBuilder.fileBuilder = (FileBuilder) service.createTask();
-		//Thread thread = new Thread(FileBuilder.fileBuilder);
-		//thread.setDaemon(true);
 		
 		progressBar.progressProperty().bind(FileBuilder.fileBuilder.progressProperty());
 		percentLabel.textProperty().bind(FileBuilder.fileBuilder.messageProperty());
@@ -68,9 +66,13 @@ public class Controller implements Initializable
 		FileBuilder.sw[6]= new Sw(2,1,2,12,16,"K2O2_");
 		FileBuilder.sw[7]= new Sw(2,2,2,13,17,"K2R2_");	
 		
-		alert.setTitle("Error");
-		alert.setContentText("Wrong file, choose the right one!!!\nPlease convert again with the right file!!!");
-		service.setOnFailed(e->alert.showAndWait());
+		alertDone.setTitle("Done");
+		alertDone.setContentText("Convertation is done successfully");
+		service.setOnSucceeded(e -> alertDone.showAndWait());
+		
+		alertError.setTitle("Error");
+		alertError.setContentText("Wrong file, choose the right one!!!\nPlease convert again with the right file!!!");
+		service.setOnFailed(e->alertError.showAndWait());
 	}
 }
 class Serv extends Service<FileBuilder>
