@@ -30,6 +30,7 @@ public class App extends Application
 		        	e.consume();
 		        	primaryStage.close();
 		        });
+		        primaryStage.setResizable(false);
 		        primaryStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();
