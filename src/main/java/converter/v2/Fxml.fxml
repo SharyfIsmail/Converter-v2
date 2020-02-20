@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="256.0" prefWidth="248.0" style="-fx-background-color: #AFEEEE;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="converter.v2.Controller">
+<BorderPane prefHeight="300.0" prefWidth="250.0" style="-fx-background-color: #AFEEEE;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="converter.v2.Controller">
    <bottom>
       <Button fx:id="exitButton" lineSpacing="1.0" mnemonicParsing="false" onAction="#exitButtonHandler" prefHeight="33.0" prefWidth="95.0" text="Exit" BorderPane.alignment="CENTER" />
    </bottom>
