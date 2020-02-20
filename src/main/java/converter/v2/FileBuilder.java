@@ -286,7 +286,7 @@ public class FileBuilder extends Task<Void>
 						  
 						  else
 						  {
-							  String s = dir+ "\\" + kV.ssw.prefix + String.format("%03d",j) +"__"+fim.year+"__"+fim.month +"__"+ fim.day+"__" +fim.hour + fim.min + fim.sec + ".TXT";
+							  String s = dir+ "\\" + kV.ssw.prefix + String.format("%03d",j) +"__"+fim.year+"__"+fim.month +"__"+ fim.day+"__" +String.format("%02d", fim.hour) + String.format("%02d", fim.min) +String.format("%02d", fim.sec)  + ".TXT";
 							  masFilePrinter(s);
 							  printWriterS.printf(Locale.PRC, "%d\t%d\t%d\t\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%d\t%f\t%f\t%f\t%f\t%d\t%d\t%d\t%d\t%s%n",
 									  kV.ssw.a, kV.ssw.b, kV.ssw.c, kV.ssw.i, j, fim.year, fim.month, fim.day, fim.hour, fim.min, fim.sec, fim.skz, fim.pik, fim.F_ob_min, fim.moment, fim.res[0], fim.res[1], fim.res[2], fim.res[3], s);						   
