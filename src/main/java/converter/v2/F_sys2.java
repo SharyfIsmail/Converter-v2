@@ -7,9 +7,10 @@ public class F_sys2
     
     Sys2[] rmk = {new Sys2(),new Sys2()};       //2 структуры для РМК1 и РМК2
 	int nomer_rmk;                              // номер РМК, с которым работаем
-	long period_recording;
+	int  regim_work_tek;
+    Count_F_All[] count_F_Alls = {new Count_F_All(), new Count_F_All()};
 	
-	class Sys2 
+    class Sys2 
 	{
 		Count_f count = new Count_f();                          // счетчики файлов 12 byte
 		float Sr_skz_d1, Sr_skz_d2, Sr_pik_d1, Sr_pik_d2;       // средние значения ФДП
@@ -19,8 +20,18 @@ public class F_sys2
 		float Sum_skz_d1, Sum_pik_d1, Sum_skz_d2, Sum_pik_d2;   // суммы для вычисления средних скз, пик
 		float Prozent_yel,Prozent_red;                          // суммы для вычисления средних мощность
 		int cnt_d1, cnt_d2;                                     // счетчики для вычисления средних
-		short defect_file;                                      // номер АЦП, с которым работаем.
+		int defect_file;                                      // номер АЦП, с которым работаем.
                                                             // 1-АЦП1, 2-АЦП2, 3-АЦП3, 0 - работаем по выбору из трех значений
     }
-
+	class Count_F_All 
+	{
+	  long O1;                     // счетчик образцового файла массива диапазона1
+	  long O2;                     // счетчик образцового файла массива диапазона2
+	  long T1;                      // счетчик текущего файла массива диапазона1
+	  long T2;                      // счетчик текущего файла массива диапазона2
+	  long O31;            // счетчик элементов образцового файла ФДП диапазона1
+	  long O32;            // счетчик элементов образцового файла ФДП диапазона2
+	  long T31;             // счетчик элементов текущего файла ФДП диапазона1
+	  long T32;             // счетчик элементов текущего файла ФДП диапазона2
+	}
 }

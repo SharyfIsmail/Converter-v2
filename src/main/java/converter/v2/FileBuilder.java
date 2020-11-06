@@ -54,11 +54,16 @@ public class FileBuilder extends Task<Void>
 		fsys1.Kd_rmk2	    = getFloat(sys1, 40);
 		fsys1.k_moment_rmk1 = getFloat(sys1, 44);
 		fsys1.k_moment_rmk2 = getFloat(sys1, 48);
+		
 		fsys1.graniza_1 	= getInt(sys1, 52);
 		fsys1.graniza_2 	= getInt(sys1, 54);
 		fsys1.moment_1 		= getInt(sys1, 56);
 		fsys1.moment_2 	    = getInt(sys1, 58);
 		fsys1.kratnost_FOB  = getInt(sys1, 60);		
+		fsys1.period_recording =  getLong(sys1,62);
+		fsys1.regim_work_zadan =  getInt(sys1,66);
+		fsys1.nomer_mashine = getInt(sys1, 68);
+		
 	}
 	
 	public static void getDataSys2(byte[] sys2)
@@ -103,11 +108,21 @@ public class FileBuilder extends Task<Void>
 			fsys2.rmk[i].cnt_d1      = getInt(sys2, startByte);   startByte += 2;
 			fsys2.rmk[i].cnt_d2 	 = getInt(sys2, startByte);   startByte += 2;
 			
-			fsys2.rmk[i].defect_file = getShort(sys2, startByte); startByte += 1;
+			fsys2.rmk[i].defect_file = getShort(sys2, startByte); startByte += 2;
 		}
-		fsys2.nomer_rmk 	  		 = getInt(sys2, startByte);   startByte += 2;
-
-		fsys2.period_recording 		 = getLong(sys2, startByte);  startByte += 4;
+		 fsys2.nomer_rmk 	  		 = getInt(sys2, startByte);   startByte += 2;
+		 fsys2.regim_work_tek 	     = getInt(sys2, startByte);   startByte += 2;
+		for (int i = 0; i < 2; i++)
+		{
+			fsys2.count_F_Alls[i].O1 = getLong(sys2, startByte) ;startByte += 4;
+			fsys2.count_F_Alls[i].O2 = getLong(sys2, startByte) ;startByte += 4;
+			fsys2.count_F_Alls[i].T1 = getLong(sys2, startByte) ;startByte += 4;
+			fsys2.count_F_Alls[i].T2 = getLong(sys2, startByte) ;startByte += 4;
+			fsys2.count_F_Alls[i].O31 = getLong(sys2, startByte) ;startByte += 4;
+			fsys2.count_F_Alls[i].O32 = getLong(sys2, startByte) ;startByte += 4;
+			fsys2.count_F_Alls[i].T31 = getLong(sys2, startByte) ;startByte += 4;
+			fsys2.count_F_Alls[i].T32 = getLong(sys2, startByte) ;startByte += 4;
+		}
 	}
 	
 	public static void getDataFdp(byte[] fdpArray)
@@ -175,9 +190,10 @@ public class FileBuilder extends Task<Void>
 			printWriter.printf(Locale.PRC, "%s\t\t%d%n", "moment_1:", fsys1.moment_1);
 			printWriter.printf(Locale.PRC, "%s\t\t%d%n", "moment_2:", fsys1.moment_2);
 	        printWriter.println("--------------------------------------");
-			printWriter.printf(Locale.FRANCE,"%s\t%d%n" ,"period_recording:", fsys2.period_recording);
+			printWriter.printf(Locale.FRANCE,"%s\t%d%n" ,"period_recording:", fsys1.period_recording);
 			printWriter.printf(Locale.FRANCE,"%s\t\t%d%n" ,"kratnost_FOB:", fsys1.kratnost_FOB);
-
+			printWriter.printf(Locale.FRANCE,"%s\t%d%n" ,"regim_work_zadan:", fsys1.regim_work_zadan);
+			printWriter.printf(Locale.FRANCE,"%s\t\t%d%n" ,"nomer_mashine:", fsys1.nomer_mashine);
 		}
 		fileName = dir + "\\KSYSTEM2.TXT"; 
 		try(PrintWriter printWriter = new PrintWriter(new BufferedWriter(new FileWriter(fileName))))
@@ -219,6 +235,17 @@ public class FileBuilder extends Task<Void>
 	    	printWriter.printf(Locale.PRC, "%s\t%f\t%f%n", "Sum_pik_d2:", fsys2.rmk[0].Sum_pik_d2 , fsys2.rmk[1].Sum_pik_d2);
 	    	printWriter.printf(Locale.PRC, "%s\t\t%d\t\t%d%n", "cnt_d1:", fsys2.rmk[0].cnt_d1 , fsys2.rmk[1].cnt_d1);
 	    	printWriter.printf(Locale.PRC, "%s\t\t%d\t\t%d%n", "cnt_d2:", fsys2.rmk[0].cnt_d2 , fsys2.rmk[1].cnt_d2);
+	        printWriter.println("-------------------------------------------------------------------------------------");
+	        printWriter.printf("%s%13s%15s%n", "Параметр", "rmk_1", "rmk_2"); 
+	 	    	printWriter.printf(Locale.PRC, "%s\t\t%d\t\t%d%n", "O1:", fsys2.count_F_Alls[0].O1, fsys2.count_F_Alls[1].O1);
+	 	    	printWriter.printf(Locale.PRC, "%s\t\t%d\t\t%d%n", "O2:", fsys2.count_F_Alls[0].O2, fsys2.count_F_Alls[1].O2);
+	 	    	printWriter.printf(Locale.PRC, "%s\t\t%d\t\t%d%n", "T1:", fsys2.count_F_Alls[0].T1,fsys2.count_F_Alls[1].T1);
+	 	    	printWriter.printf(Locale.PRC, "%s\t\t%d\t\t%d%n", "T2:", fsys2.count_F_Alls[0].T2,  fsys2.count_F_Alls[1].T2);
+	 	    	printWriter.printf(Locale.PRC, "%s\t\t%d\t\t%d%n", "O31:", fsys2.count_F_Alls[0].O31, fsys2.count_F_Alls[1].O31);
+	 	    	printWriter.printf(Locale.PRC, "%s\t\t%d\t\t%d%n", "O32:", fsys2.count_F_Alls[0].O32,  fsys2.count_F_Alls[1].O32);
+	 	    	printWriter.printf(Locale.PRC, "%s\t\t%d\t\t%d%n", "T31:",fsys2.count_F_Alls[0].T31, fsys2.count_F_Alls[1].T31);
+	 	    	printWriter.printf(Locale.PRC, "%s\t\t%d\t\t%d%n", "T32:", fsys2.count_F_Alls[0].T32,  fsys2.count_F_Alls[1].T32);	        
+
 		}
 	}
 	
@@ -333,16 +360,21 @@ public class FileBuilder extends Task<Void>
 	    if(vibr.equals(vibr1))
 	    {
 	    	Platform.runLater(() -> fileBuilder.setTextProperty("Processing..."));
-	    	
+// or lile this 
+	   /*	 Platform.runLater(new Runnable() {
+			
+			@Override
+			public void run() {
+				fileBuilder.setTextProperty("Processing...");				
+			}
+		});*/
 	    	myPath = new File(dir);
 			myPath.mkdir();
 			myPath.mkdirs();
 			
 	    	ByteBuffer byteBuffer = ByteBuffer.wrap(bytes);
-	    	
 	    	sys1 = new byte[(int)(ffrr.r[0].s_by * ffrr.r[0].n_fi)]; 
 	    	byteBuffer.get(sys1, 0, 512);
-		 
 	    	sys2 = new byte[(int)(ffrr.r[1].s_by * ffrr.r[1].n_fi)];
 	    	byteBuffer.get(sys2, 0,sys2.length);
 	

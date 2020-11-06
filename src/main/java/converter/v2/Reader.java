@@ -25,7 +25,7 @@ public class Reader
 			e.printStackTrace();
 		}catch(IOException e)
 		{
-			e.printStackTrace();
+				e.printStackTrace();
 		}
 		return bytes;
 	}

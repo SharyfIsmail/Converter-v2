@@ -10,4 +10,9 @@ public class F_sys1
 	int  graniza_1, graniza_2;                                                     // границы нижняя и верхняя для определения диапазонов
 	int moment_1,moment_2;                                                         // границы нижняя и верхняя для определения диапазонов по нагрузке
 	int  kratnost_FOB;
+	long period_recording; // uint32_t
+	int regim_work_zadan;
+	int nomer_mashine;
+	short checksum;
+	
 }

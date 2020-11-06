@@ -23,15 +23,16 @@ public class App extends Application
 	{
 		try {
 			 Parent root = FXMLLoader.load(getClass().getResource("Fxml.fxml"));
-		        primaryStage.setTitle("Converter");
-		        Scene scene = new Scene(root, 250,300);
-		        primaryStage.setScene(scene);
-		        primaryStage.setOnCloseRequest(e-> {
-		        	e.consume();
-		        	primaryStage.close();
+		      
+			 primaryStage.setTitle("Converter");
+			 Scene scene = new Scene(root, 250,300);
+			 primaryStage.setScene(scene);
+			 primaryStage.setOnCloseRequest(e-> {
+				 e.consume();
+				 primaryStage.close();
 		        });
-		        primaryStage.setResizable(false);
-		        primaryStage.show();
+			 primaryStage.setResizable(false);
+			 primaryStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
