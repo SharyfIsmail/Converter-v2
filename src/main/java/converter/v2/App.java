@@ -22,8 +22,7 @@ public class App extends Application
 	public void start(Stage primaryStage)
 	{
 		try {
-			 Parent root = FXMLLoader.load(getClass().getResource("Fxml.fxml"));
-		      
+			 Parent root = FXMLLoader.load(getClass().getResource("Fxml.fxml"));	      
 			 primaryStage.setTitle("Converter");
 			 Scene scene = new Scene(root, 250,300);
 			 primaryStage.setScene(scene);
