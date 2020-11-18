@@ -1,5 +1,4 @@
 package converter.v2;
-
 import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -16,7 +15,7 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-
+ 
 public class Controller implements Initializable
 {
 	@FXML
